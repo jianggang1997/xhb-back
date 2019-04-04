@@ -1,0 +1,40 @@
+server:
+  port: 30000
+
+management:
+  server:
+    port: 39000
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    health-check-url: http://localhost:39000/actuator/health
+    health-check-url-path:
+  client:
+    service-url:
+      defaultZone: http://localhost:30001/eureka/
+
+spring:
+  application:
+    name: '@artifactId@'
+  banner:
+    location: classpath:config/banner.txt
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/jianggang1997/siki-xhb.git
+          search-paths: siki-xhb-config-repository/{application}
+          username: jianggang1997
+          password: abc13797347245
+
+info:
+  name: iov-sjjh-servicenode-user
+  version: '@project.version@'

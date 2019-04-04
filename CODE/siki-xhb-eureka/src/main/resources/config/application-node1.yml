@@ -1,0 +1,29 @@
+server:
+  port: 30001
+management:
+  server:
+    port: 39001
+
+spring:
+  application:
+    name: '@artifactId@'
+  banner:
+    location: classpath:config/banner.txt
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+    metadata-map:
+      management:
+        port: ${management.server.port}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://siki.eureka.node2:30002/eureka/
+
+
+info:
+  name: '@artifactId@'
+  version: '@project.version@'

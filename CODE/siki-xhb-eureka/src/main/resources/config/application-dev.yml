@@ -1,0 +1,26 @@
+server:
+  port: 30001
+management:
+  server:
+    port: 39001
+
+spring:
+  application:
+    name: '@artifactId@'
+  banner:
+    location: classpath:config/banner.txt
+
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:30001/eureka/
+
+
+info:
+  name: '@artifactId@'
+  version: '@project.version@'

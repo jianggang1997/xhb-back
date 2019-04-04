@@ -1,0 +1,17 @@
+server:
+  port: 30002
+management:
+  server:
+    port: 39002
+
+spring:
+  application:
+    name: siki-xhb-admin-server
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:30001/eureka/
+
