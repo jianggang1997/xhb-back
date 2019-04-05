@@ -1,0 +1,27 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/health
+    metadata-map:
+      management:
+        port: ${management.server.port}
+  client:
+    service-url:
+      defaultZone: http://192.168.37.129:30001/eureka/,http://192.168.37.131:30001/eureka
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    username: jianggang1997@gmail.com
+    password: abc13797347245.
+    protocol: smtp
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.port: 465
+    properties.mail.display.sendmail: Javen
+    properties.mail.display.sendname: Spring Boot Guide Email
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.smtp.starttls.required: true
+    properties.mail.smtp.ssl.enable: true
+    from: jianggang1997@gmail.com
+    default-encoding: utf-8      
