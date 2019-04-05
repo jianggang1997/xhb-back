@@ -16,7 +16,7 @@ spring:
     username: root
     password: XHBsite2017.
     type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
     druid:
       max-active: 20
       initial-size: 2
