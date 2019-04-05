@@ -14,6 +14,7 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/healthsd
     metadata-map:
       management:
         port: ${management.server.port}
@@ -21,7 +22,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://siki.eureka.node2:30002/eureka/
+      defaultZone: http://192.168.37.129:30001/eureka/,http://192.168.37.131:30001/eureka/
 
 
 info:

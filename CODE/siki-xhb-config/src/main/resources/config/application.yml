@@ -14,12 +14,12 @@ management:
 
 eureka:
   instance:
-    instance-id: ${spring.application.name}:${server.port}
-    health-check-url: http://localhost:39000/actuator/health
-    health-check-url-path:
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/health
+    prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://localhost:30001/eureka/
+      defaultZone:  http://192.168.37.129:30001/eureka/,http://192.168.37.131:30001/eureka/
 
 spring:
   application:
@@ -30,7 +30,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/jianggang1997/siki-xhb.git
+          uri: https://github.com/jianggang1997/xhb-back.git
           search-paths: siki-xhb-config-repository/{application}
           username: jianggang1997
           password: abc13797347245

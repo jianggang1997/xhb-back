@@ -23,4 +23,7 @@ eureka:
 
 info:
   name: '@artifactId@'
-  version: '@project.version@'
+
+
+
+

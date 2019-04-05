@@ -1,14 +1,12 @@
-server:
-  port: 30001
-management:
-  server:
-    port: 39001
-
-spring:
-  application:
-    name: '@artifactId@'
-  banner:
-    location: classpath:config/banner.txt
+ zuul:
+   ignoreServices: '*'
+   ignore-patterns: '/**/inner/**'
+   addHostHeader: true
+   routes:
+     siki-xhb-user:
+       path: /api/user/v1/**
+       serviceId: siki-xhb-user
+       sensitiveHeaders: user-agent,Cookie
 
 eureka:
   instance:
@@ -19,12 +17,17 @@ eureka:
       management:
         port: ${management.server.port}
   client:
-    register-with-eureka: true
-    fetch-registry: true
     service-url:
       defaultZone: http://192.168.37.129:30001/eureka/,http://192.168.37.131:30001/eureka/
 
-
-info:
-  name: '@artifactId@'
-  version: '@project.version@'
+spring:
+  redis:
+  database: 0
+  host: 192.168.37.129
+  port: 6379
+  jedis:
+    pool:
+      max-active: 8
+      max-wait: 300
+      max-idle: 8
+      min-idle: 0     

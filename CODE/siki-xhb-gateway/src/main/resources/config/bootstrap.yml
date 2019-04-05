@@ -1,0 +1,25 @@
+server:
+  port: 30010
+management:
+  server:
+    port: 39010
+
+spring:
+  application:
+    name: '@artifactId@'
+  banner:
+    location: classpath:config/banner.txt
+  profiles:
+    active: dev
+  cloud:
+    config:
+      discovery:
+        enabled: false
+      uri: http://192.168.37.131:30000
+      name: ${spring.application.name}
+      profile: ${spring.profiles.active}
+
+
+  info:
+   name: '@artifactId@'
+   version: '@project.version@'
