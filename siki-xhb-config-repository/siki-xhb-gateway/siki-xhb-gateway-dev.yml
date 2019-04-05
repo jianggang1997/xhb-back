@@ -1,12 +1,12 @@
- zuul:
-   ignoreServices: '*'
-   ignore-patterns: '/**/inner/**'
-   addHostHeader: true
-   routes:
-     siki-xhb-user:
-       path: /api/user/v1/**
-       serviceId: siki-xhb-user
-       sensitiveHeaders: user-agent,Cookie
+zuul:
+  ignoreServices: '*'
+  ignore-patterns: '/**/inner/**'
+  addHostHeader: true
+  routes:
+   siki-xhb-user:
+     path: /api/user/v1/**
+     serviceId: siki-xhb-user
+     sensitiveHeaders: user-agent,Cookie
 
 eureka:
   instance:
