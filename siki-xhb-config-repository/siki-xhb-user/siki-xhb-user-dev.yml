@@ -8,8 +8,8 @@ eureka:
         port: ${management.server.port}
   client:
     service-url:
-      defaultZone: http://192.168.37.129:30001/eureka/,http://192.168.37.131:30001/eureka
-
+      defaultZone: http://192.168.37.129:30001/eureka/,http://192.168.37.131:30001/eureka/
+      
 spring:
   datasource:
     url: jdbc:mysql://192.168.37.129:3306/siki-xhb?characterEncoding=UTF-8
