@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siki.xhb.user.dao.RegisterInfoDao">
+    
+    <sql id="table_base_columns">
+        xr.id,xr.sid,xr.account,xr.pwd_md5,xr.reg_date,xr.reg_ip,xr.reg_type,
+        xr.info_status,xr.gmt_create,xr.gmt_modify
+    </sql>
+    
+    <insert id="insertRegisterInfo">
+      INSERT INTO xhb_register(sid,account,pwd_md5,reg_ip,reg_type,info_status) VALUES
+          (#{info.sid,jdbcType=VARCHAR},#{info.account,jdbcType=VARCHAR},#{info.pwd_md5,jdbcType=VARCHAR},#{info.reg_ip,jdbcType=VARCHAR},#{info.reg_type,jdbcType=INTEGER},#{info.info_status,jdbcType=INTEGER})
+    </insert>
+
+    <update id="updateRegisterInfo">
+        UPDATE xhb_register
+        <set>
+            <if test="info.pwd_md5!=null">
+                pwd_md5=#{info.pwd_md5}
+            </if>
+            <if test="info.info_status!=null">
+                info_status=#{info.info_status}
+            </if>
+        </set>
+        <where>
+            <if test="info.account!=null">
+                account=#{info.account}
+            </if>
+        </where>
+    </update>
+
+    <select id="selectRegisterInfo" resultType="com.siki.xhb.user.model.RegisterInfo">
+      SELECT
+        <include refid="table_base_columns"/>
+      FROM xhb_register xr
+      <where>
+          <if test="info.id!=null">
+            xr.id = #{info.id}
+          </if>
+          <if test="info.sid!=null">
+            AND xr.sid = #{info.sid}
+          </if>
+          <if test="info.account!=null">
+            AND xr.account = #{info.account}
+          </if>
+      </where>
+      ORDER BY xr.gmt_create DESC LIMIT #{start},#{pageSize}
+    </select>
+</mapper>

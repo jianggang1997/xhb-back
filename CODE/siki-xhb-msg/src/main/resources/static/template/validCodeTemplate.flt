@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+    <body>
+        <div>
+            <text>【小黑板】 您的验证码为：${validCode}，千万不要告诉别人哦！</text>
+        </div>
+    </body>
+</html>

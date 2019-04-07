@@ -14,7 +14,7 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ipaddress}:${server.port}
-    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/healthsd
+    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/health
     metadata-map:
       management:
         port: ${management.server.port}

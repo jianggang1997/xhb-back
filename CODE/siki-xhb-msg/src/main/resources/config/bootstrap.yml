@@ -1,8 +1,8 @@
 server:
-  port: 30010
+  port: 30012
 management:
   server:
-    port: 39010
+    port: 38012
   endpoints:
     web:
       exposure:
@@ -14,7 +14,7 @@ management:
 
 spring:
   application:
-    name: siki-xhb-gateway
+    name: siki-xhb-msg
   banner:
     location: classpath:config/banner.txt
   profiles:
@@ -27,19 +27,10 @@ spring:
       name: ${spring.application.name}
       profile: ${spring.profiles.active}
 
-
-
 info:
-  name: siki-xhb-gateway
+  name: siki-xhb-msg
   version: 1.0.0
 
-gateway:
-  config:
-    validateCode: register.do;modifyPass.do
-    noValidateLogin: register.do;login.do;sendMailValidCode.do
-    logout: login.do
-    validCodeLiveTime: 180
-    validMinInterval: 60
-    loginUri: login.do
-    sendValidCodeUri: sendMailValidCode.do;
 
+mail:
+  from: 2632643976@qq.com

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>siki-xhb-gateway</artifactId>
+    <artifactId>siki-xhb-msg</artifactId>
     <version>1.0.0</version>
 
     <parent>
@@ -12,6 +12,7 @@
         <artifactId>siki-xhb-parent</artifactId>
         <version>1.0.0</version>
     </parent>
+
 
     <dependencies>
         <dependency>
@@ -23,32 +24,25 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-client</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <groupId>com.siki.xhb</groupId>
+            <artifactId>siki-xhb-vo</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-data-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
         <dependency>
             <groupId>com.siki.xhb</groupId>
-            <artifactId>siki-xhb-vo</artifactId>
+            <artifactId>siki-xhb-msg-interface</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
@@ -61,5 +55,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>

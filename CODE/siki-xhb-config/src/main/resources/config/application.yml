@@ -31,10 +31,10 @@ spring:
       server:
         git:
           uri: https://github.com/jianggang1997/xhb-back.git
-          search-paths: siki-xhb-config-repository/{application}
+          search-paths: siki-xhb-config-repository/{application},{application}
           username: jianggang1997
           password: abc13797347245
 
 info:
-  name: iov-sjjh-servicenode-user
+  name: siki-xhb-config
   version: '@project.version@'
