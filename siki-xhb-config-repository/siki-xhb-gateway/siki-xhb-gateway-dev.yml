@@ -10,7 +10,12 @@ zuul:
     siki-xhb-msg:
       path: /api/msg/v1/**
       serviceId: siki-xhb-msg
-      sensitiveHeaders: user-agent,Cookie 
+      sensitiveHeaders: user-agent,Cookie
+siki-xhb-msg:
+  ribbon:
+    ConnectTimeout: 250
+    OkToRetryOnAllOperations: false
+    ReadTimeout: 2000000       
 
 
 eureka:
