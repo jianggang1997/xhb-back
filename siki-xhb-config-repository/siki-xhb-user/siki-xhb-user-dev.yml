@@ -10,6 +10,18 @@ eureka:
     service-url:
       defaultZone: http://192.168.37.129:30001/eureka/,http://192.168.37.131:30001/eureka/
       
+management:
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        exclude: '*'  
+
 spring:
   datasource:
     url: jdbc:mysql://192.168.37.129:3306/siki-xhb?characterEncoding=UTF-8

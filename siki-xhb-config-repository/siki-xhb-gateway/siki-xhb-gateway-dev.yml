@@ -15,7 +15,21 @@ siki-xhb-msg:
   ribbon:
     ConnectTimeout: 250
     OkToRetryOnAllOperations: false
-    ReadTimeout: 2000000       
+    ReadTimeout: 2000000
+
+      defaultZone: http://192.168.37.129:30001/eureka/,http://192.168.37.131:30001/eureka/
+      
+management:
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        exclude: '*'       
 
 
 eureka:
