@@ -10,12 +10,11 @@ eureka:
     service-url:
       defaultZone: http://192.168.37.129:30001/eureka/,http://192.168.37.131:30001/eureka/
 
-
 spring:
   mail:
     host: smtp.qq.com
     username: 2632643976@qq.com
-    passward: vdmgupprubikdiac      
+    password: vdmgupprubikdiac
     properties:
       mail:
         smtp:
@@ -23,12 +22,12 @@ spring:
           timeout: 20000
   freemarker:
     template-loader-path: classpath:/static/template/
-    enbaled: true
+    enabled: true
     cache: true
     charset: utf-8
-    centent-type: text/html        
+    content-type: text/html
     allow-request-override: false
     check-template-location: true
     expose-request-attributes: false
     expose-session-attributes: false
-    expose-spring-macro-helpers: false
+    expose-spring-macro-helpers: false   
