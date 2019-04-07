@@ -1,0 +1,34 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/health
+    metadata-map:
+      management:
+        port: ${management.server.port}
+  client:
+    service-url:
+      defaultZone: http://192.168.37.129:30001/eureka/,http://192.168.37.131:30001/eureka/
+
+
+spring:
+  mail:
+    host: smtp.qq.com
+    username: 2632643976@qq.com
+    passward: vdmgupprubikdiac      
+    properties:
+      mail:
+        smtp:
+          auth: true
+          timeout: 20000
+  freemarker:
+    template-loader-path: classpath:/static/template/
+    enbaled: true
+    cache: true
+    charset: utf-8
+    centent-type: text/html        
+    allow-request-override: false
+    check-template-location: true
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
