@@ -2,7 +2,7 @@ server:
   port: 30012
 management:
   server:
-    port: 38012
+    port: 39012
   endpoints:
     web:
       exposure:

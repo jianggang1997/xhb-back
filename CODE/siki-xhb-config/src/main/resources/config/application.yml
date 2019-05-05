@@ -1,9 +1,9 @@
 server:
-  port: 30000
+  port: 30004
 
 management:
   server:
-    port: 39000
+    port: 39004
   endpoints:
     web:
       exposure:
@@ -14,12 +14,15 @@ management:
 
 eureka:
   instance:
+    prefer-ip-address: true
     instance-id: ${spring.cloud.client.ipaddress}:${server.port}
     health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/health
-    prefer-ip-address: true
+    metadata-map:
+      management:
+        port: ${management.server.port}
   client:
     service-url:
-      defaultZone:  http://192.168.37.129:30001/eureka/,http://192.168.37.131:30001/eureka/
+      defaultZone: http://61.183.20.49:30001/eureka/
 
 spring:
   application:
