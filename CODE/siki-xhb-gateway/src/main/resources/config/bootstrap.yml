@@ -23,23 +23,12 @@ spring:
     config:
       discovery:
         enabled: false
-      uri: http://192.168.37.131:30000
+      uri: http://61.183.20.49:30004
       name: ${spring.application.name}
       profile: ${spring.profiles.active}
-
-
 
 info:
   name: siki-xhb-gateway
   version: 1.0.0
 
-gateway:
-  config:
-    validateCode: register.do;modifyPass.do
-    noValidateLogin: register.do;login.do;sendMailValidCode.do
-    logout: login.do
-    validCodeLiveTime: 180
-    validMinInterval: 60
-    loginUri: login.do
-    sendValidCodeUri: sendMailValidCode.do;
 

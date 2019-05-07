@@ -1,0 +1,40 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/health
+    metadata-map:
+      management:
+        port: ${management.server.port}
+  client:
+    service-url:
+      defaultZone: http://61.183.20.49:30001/eureka/
+
+zuul:
+  ignoredServices : '*'
+  ignored-patterns : '/**/inner/**'
+  addHostHeader : true
+  routes:
+    msg:
+      path : /api/msg/v1/**
+      serviceId : siki-xhb-msg
+      sensitiveHeaders : user-agent,cookie
+    user:
+      path : /api/user/v1/**
+      serviceId : siki-xhb-user
+      sensitiveHeaders : user-agent,cookie  
+siki-xhb-msg:
+  ribbon:
+    ConnectTimeout : 250
+    OkToRetryOnAllOperations : false
+    ReadTimeout : 200000
+
+gateway:
+  config:
+    validateCode: register.do;modifyPass.do
+    noValidateLogin: register.do;login.do;sendMailValidCode.do
+    logout: login.do
+    validCodeLiveTime: 180
+    validMinInterval: 60
+    loginUri: login.do
+    sendValidCodeUri: sendMailValidCode.do;
