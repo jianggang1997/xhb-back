@@ -77,7 +77,7 @@ public class ValidCodeFilter extends ZuulFilter {
                 ValidCodeRecord record = mapper.readValue(CodeRecordJosn,ValidCodeRecord.class);
                 /**验证码已过期*/
                 if((System.currentTimeMillis()/1000-record.getTimestamp()/1000)>properties.getValidCodeLiveTime()){
-                    res.setCode(RsqCode.VALID_CODE_NO_SEND);
+                    res.setCode(RsqCode.VALID_CODE_EXPIRED);
                     res.setMessage("验证码已过期！");
                     context.setResponseBody(mapper.writeValueAsString(res));
                     context.addZuulResponseHeader("Content-Type","application/json;charset=UTF-8");
@@ -86,7 +86,7 @@ public class ValidCodeFilter extends ZuulFilter {
                 }
                 /**验证码不匹配*/
                 else if(!(sendTo.equals(record.getTo())&&validateCode.equals(record.getCode()))){
-                    res.setCode(RsqCode.VALID_CODE_NO_SEND);
+                    res.setCode(RsqCode.VALID_CODE_FAILE);
                     res.setMessage("验证码错误！");
                     context.setResponseBody(mapper.writeValueAsString(res));
                     context.addZuulResponseHeader("Content-Type","application/json;charset=UTF-8");

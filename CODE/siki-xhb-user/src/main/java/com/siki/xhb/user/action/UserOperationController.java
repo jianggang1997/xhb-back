@@ -11,8 +11,8 @@ import com.siki.xhb.vo.constant.DesKey;
 import com.siki.xhb.vo.constant.RsqCode;
 import com.siki.xhb.vo.model.ResObject;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -98,6 +98,22 @@ public class UserOperationController implements UserOperationI {
         }
         res.setCode(RsqCode.RESPONSE_FAIL);
         res.setMessage("修改失败！");
+        return res;
+    }
+
+    @Override
+    public ResObject isExistUser(String account) {
+        log.info("----------------->检验用户名是否存在：{}",account);
+        ResObject res = new ResObject();
+        Preconditions.checkArgument(!StringUtils.isBlank(account),"账号不能为空");
+        boolean isExist = userOperationService.checkisExistAccount(account);
+        if(isExist){
+            res.setCode(RsqCode.RESPONSE_SUCCESS);
+            res.setMessage("账号存在");
+            return res;
+        }
+        res.setCode(RsqCode.USER_NOT_EXIST);
+        res.setMessage("账号不存在");
         return res;
     }
 }

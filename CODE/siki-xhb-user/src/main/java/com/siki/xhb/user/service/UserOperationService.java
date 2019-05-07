@@ -26,4 +26,11 @@ public interface UserOperationService {
      * @return
      */
     boolean userMidifyPass(ModifyPassReq modifyPassReq);
+
+    /**
+     * 检查账户是否存在
+     * @param account
+     * @return
+     */
+    boolean checkisExistAccount(String account);
 }

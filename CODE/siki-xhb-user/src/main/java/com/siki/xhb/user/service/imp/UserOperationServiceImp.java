@@ -62,4 +62,15 @@ public class UserOperationServiceImp implements UserOperationService {
         registerInfo.setPwd_md5(Md5Util.encrypt32(modifyPassReq.getNewPass()));
         return  registerInfoDao.updateRegisterInfo(registerInfo)>0;
     }
+
+    @Override
+    public boolean checkisExistAccount(String account) {
+        RegisterInfo registerInfo = new RegisterInfo();
+        registerInfo.setAccount(account);
+        List<RegisterInfo> registerInfos = registerInfoDao.selectRegisterInfo(registerInfo, 0, 1);
+        if(registerInfos.size()>0){
+            return true;
+        }
+        return false;
+    }
 }
