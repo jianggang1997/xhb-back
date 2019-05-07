@@ -29,7 +29,7 @@ public interface UserOperationI {
     @ApiOperation(value = "修改账号密码")
     ResObject modifyPass(@RequestBody ModifyPassReq modifyPassReq);
 
-    @PostMapping(value = "/isExistAccount.do")
+    @PostMapping(value = "/isExistAccout.do")
     @ApiOperation(value = "检验账号是否存在")
-    ResObject isExistUser(@RequestParam("accout") String account);
+    ResObject isExistUser(@RequestParam("accout") String accout);
 }

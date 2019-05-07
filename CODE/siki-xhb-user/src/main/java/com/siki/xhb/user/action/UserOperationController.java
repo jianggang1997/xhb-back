@@ -102,11 +102,11 @@ public class UserOperationController implements UserOperationI {
     }
 
     @Override
-    public ResObject isExistUser(String account) {
-        log.info("----------------->检验用户名是否存在：{}",account);
+    public ResObject isExistUser(String accout) {
+        log.info("----------------->检验用户名是否存在：{}",accout);
         ResObject res = new ResObject();
-        Preconditions.checkArgument(!StringUtils.isBlank(account),"账号不能为空");
-        boolean isExist = userOperationService.checkisExistAccount(account);
+        Preconditions.checkArgument(!StringUtils.isBlank(accout),"账号不能为空");
+        boolean isExist = userOperationService.checkisExistAccout(accout);
         if(isExist){
             res.setCode(RsqCode.RESPONSE_SUCCESS);
             res.setMessage("账号存在");

@@ -29,8 +29,8 @@ public interface UserOperationService {
 
     /**
      * 检查账户是否存在
-     * @param account
+     * @param accout
      * @return
      */
-    boolean checkisExistAccount(String account);
+    boolean checkisExistAccout(String accout);
 }

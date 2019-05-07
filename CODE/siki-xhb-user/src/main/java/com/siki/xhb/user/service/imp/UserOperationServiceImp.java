@@ -64,9 +64,9 @@ public class UserOperationServiceImp implements UserOperationService {
     }
 
     @Override
-    public boolean checkisExistAccount(String account) {
+    public boolean checkisExistAccout(String accout) {
         RegisterInfo registerInfo = new RegisterInfo();
-        registerInfo.setAccount(account);
+        registerInfo.setAccount(accout);
         List<RegisterInfo> registerInfos = registerInfoDao.selectRegisterInfo(registerInfo, 0, 1);
         if(registerInfos.size()>0){
             return true;
