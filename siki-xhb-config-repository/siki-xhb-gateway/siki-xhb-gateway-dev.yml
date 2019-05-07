@@ -49,7 +49,7 @@ siki-xhb-msg:
 gateway:
   config:
     validateCode: register.do;modifyPass.do
-    noValidateLogin: register.do;login.do;sendMailValidCode.do
+    noValidateLogin: register.do;login.do;sendMailValidCode.do;modifyPass.do
     logout: login.do
     validCodeLiveTime: 180
     validMinInterval: 60

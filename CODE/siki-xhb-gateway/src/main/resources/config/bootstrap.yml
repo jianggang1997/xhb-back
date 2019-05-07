@@ -1,8 +1,8 @@
 server:
-  port: 30010
+  port: 30003
 management:
   server:
-    port: 39010
+    port: 39003
   endpoints:
     web:
       exposure:
