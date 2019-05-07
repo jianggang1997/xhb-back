@@ -10,6 +10,23 @@ eureka:
     service-url:
       defaultZone: http://61.183.20.49:30001/eureka/
 
+spring:
+  mvc:
+    favicon:
+      enabled: false
+  redis:
+    host: 61.183.20.49
+    port: 6379
+    database: 0
+    jedis:
+      pool:
+        max-wait: 1000
+        max-active: 8
+        max-idle: 50
+        min-idle: 0
+    timeout: 5000
+
+
 zuul:
   ignoredServices : '*'
   ignored-patterns : '/**/inner/**'
