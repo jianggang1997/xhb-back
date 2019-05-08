@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @Auther jianggang
@@ -22,5 +23,5 @@ public interface AliyunActionI {
 
     @ApiOperation(value = "OSS服务上传服务回调")
     @GetMapping(value = "/ossCallback.do")
-    ResObject ossServiceCallback();
+    ResObject ossServiceCallback(@RequestParam(value = "key") String key);
 }

@@ -42,7 +42,7 @@ zuul:
       sensitiveHeaders : user-agent,cookie
     aliyun:
       path: /api/aliyun/v1/**
-      serviceId: smsboard-servicenode-file
+      serviceId: siki-xhb-aliyun
       sensitiveHeaders : user-agent,cookie    
 siki-xhb-msg:
   ribbon:
