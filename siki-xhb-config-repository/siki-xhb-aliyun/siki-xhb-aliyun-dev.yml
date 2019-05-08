@@ -17,5 +17,5 @@ oss:
   endpoint: oss-cn-qingdao.aliyuncs.com
   bucket: smsboard-img
   host: http://${oss.bucket}.${oss.endpoint}
-  callbackUrl: http://61.183.20.49:30003/api/aliyun/v1/callback
+  callbackUrl: http://61.183.20.49:30003/api/aliyun/v1/ossCallback.do
   dir: smsboard_      
