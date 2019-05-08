@@ -39,7 +39,11 @@ zuul:
     user:
       path : /api/user/v1/**
       serviceId : siki-xhb-user
-      sensitiveHeaders : user-agent,cookie  
+      sensitiveHeaders : user-agent,cookie
+    aliyun:
+      path: /api/aliyun/v1/**
+      serviceId: smsboard-servicenode-file
+      sensitiveHeaders : user-agent,cookie    
 siki-xhb-msg:
   ribbon:
     ConnectTimeout : 250
