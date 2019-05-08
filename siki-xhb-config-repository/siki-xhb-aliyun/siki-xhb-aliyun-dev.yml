@@ -1,0 +1,21 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/health
+    metadata-map:
+      management:
+        port: ${management.server.port}
+  client:
+    service-url:
+      defaultZone: http://61.183.20.49:30001/eureka/
+
+
+oss:
+  accessId: LTAIe02SysY7ovPx
+  accessKey: IVP5QRka1F3LrH8FIGik0aMTgp0GfJ
+  endpoint: oss-cn-qingdao.aliyuncs.com
+  bucket: smsboard-img
+  host: http://${oss.bucket}.${oss.endpoint}
+  callbackUrl: http://61.183.20.49:30003/api/aliyun/v1/callback
+  dir: smsboard_      

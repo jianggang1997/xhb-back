@@ -1,8 +1,8 @@
 server:
-  port: 30011
+  port: 30013
 management:
   server:
-    port: 39011
+    port: 39013
   endpoints:
     web:
       exposure:
@@ -15,7 +15,7 @@ management:
 
 spring:
   application:
-    name: siki-xhb-user
+    name: siki-xhb-aliyun
   banner:
     location: classpath:config/banner.txt
   profiles:
@@ -30,5 +30,5 @@ spring:
 
 
 info:
-  name: siki-xhb-user
+  name: siki-xhb-aliyun
   version: 1.0.0
