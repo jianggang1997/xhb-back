@@ -24,4 +24,7 @@ spring:
       min-idel: 2
 
 mybatis:
-  mapper-locations: classpath:mapping/*Mapper.xml         
+  mapper-locations: classpath:mapping/*Mapper.xml
+
+app:
+  ossBaseUrl: https://smsboard-img.oss-cn-qingdao.aliyuncs.com
