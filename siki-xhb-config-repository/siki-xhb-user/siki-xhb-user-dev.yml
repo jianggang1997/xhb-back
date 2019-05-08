@@ -27,4 +27,4 @@ mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml
 
 app:
-  ossBaseUrl: https://smsboard-img.oss-cn-qingdao.aliyuncs.com
+  ossBaseUrl: https://smsboard-img.oss-cn-qingdao.aliyuncs.com/
