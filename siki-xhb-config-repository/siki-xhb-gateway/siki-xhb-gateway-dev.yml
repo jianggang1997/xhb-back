@@ -53,7 +53,7 @@ siki-xhb-msg:
 gateway:
   config:
     validateCode: register.do;modifyPass.do
-    noValidateLogin: register.do;login.do;sendMailValidCode.do;modifyPass.do;isExistAccout.do;getSign;callback
+    noValidateLogin: register.do;login.do;sendMailValidCode.do;modifyPass.do;isExistAccout.do;getOssSignature.do;ossCallback.do
     logout: login.do
     validCodeLiveTime: 180
     validMinInterval: 60
