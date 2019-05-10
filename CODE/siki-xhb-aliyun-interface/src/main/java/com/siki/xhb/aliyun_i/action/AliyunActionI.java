@@ -5,7 +5,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 /**
  * @Auther jianggang
@@ -19,9 +21,11 @@ public interface AliyunActionI {
 
     @ApiOperation(value = "获取OSS上传信息签名")
     @GetMapping(value = "/getOssSignature.do")
-    ResObject getOssSignature();
+    ResObject getOssSignature(@RequestParam(value = "filePrefix") String filePrefix);
 
     @ApiOperation(value = "OSS服务上传服务回调")
-    @GetMapping(value = "/ossCallback.do")
-    ResObject ossServiceCallback(@RequestParam(value = "key") String key);
+    @PostMapping(value = "/ossCallback.do")
+    ResObject ossServiceCallback(@RequestParam(value = "filename")String filename,
+                                 @RequestParam(value = "size")String size,
+                                 @RequestParam(value = "mimeType")String mimeType);
 }

@@ -9,9 +9,6 @@ import com.aliyun.oss.model.PolicyConditions;
 import com.siki.xhb.aliyun.config.OssProperties;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -30,7 +27,7 @@ public class OSSUtils {
      *获取OSS数字签名
      * @return
      */
-    public  JSONObject getOSSSign(String callback, Map<String,String> paramMap,OssProperties ossProperties){
+    public  JSONObject getOSSSign(String callback, Map<String,String> paramMap,OssProperties ossProperties,String filePrefix){
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.addUserMetadata("property","property-value");
 
@@ -42,7 +39,7 @@ public class OSSUtils {
             Date expiration = new Date(System.currentTimeMillis() + 30 * 1000);
             PolicyConditions policyConditions = new PolicyConditions();
             policyConditions.addConditionItem(PolicyConditions.COND_CONTENT_LENGTH_RANGE,0,104857600);
-//        policyConditions.addConditionItem(MatchMode.StartWith,PolicyConditions.COND_KEY,dir);
+//        policyConditions.addConditionItem(MatchMode.StartWith,PolicyConditions.COND_KEY,filePrefix);
             String postPolicy = ossClient.generatePostPolicy(expiration,policyConditions);
 
             byte[] binaryData = postPolicy.getBytes("utf-8");
@@ -53,20 +50,19 @@ public class OSSUtils {
 
             /* 拼接回调函数参数 */
             Iterator<String> paramKey = paramMap.keySet().iterator();
-            String paramUrl = "";
-            while(paramKey.hasNext()){
-                String key = paramKey.next();
-                paramUrl += '&' + key + '=' + paramMap.get(key);
-            }
-            if(paramUrl.length()>0){
-                paramUrl = paramUrl.substring(1);
-            }
-
+            String paramUrl = "filename=${object}&size=${size}&mimeType=${mimeType}";
+//            while(paramKey.hasNext()){
+//                String key = paramKey.next();
+//                paramUrl += '&' + key + '=' + paramMap.get(key);
+//            }
+//            if(paramUrl.length()>0){
+//                paramUrl = paramUrl.substring(1);
+//            }
             respMap.put("accessid",ossProperties.getAccessId());
             respMap.put("host",ossProperties.getHost());
             respMap.put("policy",encodedPolicy);
             respMap.put("signature",postSignature);
-            respMap.put("dir",ossProperties.getDir());
+            respMap.put("dir",filePrefix);
 
             Map<String,Object> callbackMap = new HashMap<String,Object>();
             callbackMap.put("callbackUrl",ossProperties.getCallbackUrl());

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siki.xhb.user.dao.DynamicCommentDao">
+
+    <sql id="table_base_columns">
+        xudc.id,xudc.sid,xudc.content,xudc.date,xudc.reg_id,xudc.dyn_id,xudc.gmt_create,xudc.gmt_modify
+    </sql>
+
+    <insert id="insertComment">
+      INSERT INTO xhb_user_dyn_comment(sid,content,date,reg_id,dyn_id)
+      VALUES (#{dynamicCommentInfo.sid,jdbcType=VARCHAR},#{dynamicCommentInfo.content,jdbcType=VARCHAR},
+      now(),#{dynamicCommentInfo.reg_id,jdbcType=INTEGER},#{dynamicCommentInfo.dyn_id,jdbcType=INTEGER})
+    </insert>
+
+    <select id="countCommentByDyId" resultType="java.lang.Integer">
+      SELECT COUNT(xudc.id) FROM xhb_user_dyn_comment WHERE
+      xudc.dyn_id=#{dynamicId}
+    </select>
+
+
+</mapper>

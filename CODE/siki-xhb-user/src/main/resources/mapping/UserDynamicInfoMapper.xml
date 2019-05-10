@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siki.xhb.user.dao.UserDynamicDao">
+
+    <sql id="table_base_columns">
+        xud.id,xud.sid,xud.content,xud.pub_date,xud.imgs,xud.reg_id,xud.gmt_create,xud.gmt_modify
+    </sql>
+
+    <insert id="insertUserDynamic">
+      INSERT INTO xhb_user_dynamic(sid,content,pub_date,imgs,reg_id) VALUES (#{userDynamicInfo.sid,jdbcType=VARCHAR},
+      #{userDynamicInfo.content,jdbcType=VARCHAR},now(),#{userDynamicInfo.imgs,jdbcType=VARCHAR},#{userDynamicInfo.reg_id,jdbcType=INTEGER})
+    </insert>
+
+
+    <select id="selectUserDynamic" resultType="com.siki.xhb.user.model.UserDynamicInfo">
+        SELECT
+        <include refid="table_base_columns"/>
+        FROM xhb_user_dynamic xud
+        <where>
+          <if test="userDynamicInfo.sid!=null">
+              xud.sid = #{userDynamicInfo.sid}
+          </if>
+        </where>
+        ORDER BY xud.gmt_create DESC LIMIT #{start},#{pageSize}
+    </select>
+
+
+</mapper>

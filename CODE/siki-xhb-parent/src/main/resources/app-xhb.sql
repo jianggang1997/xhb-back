@@ -15,20 +15,22 @@ CREATE TABLE xhb_register(
 
 /*用户信息表*/
 CREATE TABLE xhb_user(
-  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,        #用户id
-  sid VARCHAR(50) NOT NULL UNIQUE,          #sid
-  nickname VARCHAR(10) NOT NULL UNIQUE ,    #用户别名
-  name VARCHAR(10) NOT NULL,                #用户姓名
-  tel INT ,                                 #用户电话
-  addr varchar(50),                         #家庭地址
-  now_addr VARCHAR(50),                     #现住址
-  birthday DATE ,                           #用户出生日期
-  emil VARCHAR(20),                         #用户Emil
-  qq  VARCHAR(20),                          #用户qq
-  weixin VARCHAR(20) ,                      #用户微信
-  weibo varchar(20),                        #用户微博
-  school_name varchar(50),                  #用户学校名称  ----冗余列
-  school_class VARCHAR(50),                 #学校班级     -----冗余列
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,#用户id
+  reg_id INT UNSIGNED,
+  sid VARCHAR(50) NOT NULL UNIQUE,           #sid
+  nickname VARCHAR(10) NOT NULL UNIQUE ,     #用户别名
+  name VARCHAR(10) NOT NULL,                 #用户姓名
+  tel INT ,                                  #用户电话
+  addr varchar(50),                          #家庭地址
+  now_addr VARCHAR(50),                      #现住址
+  birthday DATE ,                            #用户出生日期
+  emil VARCHAR(20),                          #用户Emil
+  qq  VARCHAR(20),                           #用户qq
+  weixin VARCHAR(20) ,                       #用户微信
+  weibo varchar(20),                         #用户微博
+  school_name varchar(50),                   #用户学校名称  ----冗余列
+  school_class VARCHAR(50),                  #学校班级     -----冗余列
+  CONSTRAINT fk_xu_reg FOREIGN KEY (reg_id) references xhb_register(id),
   gmt_create DATETIME NOT NULL DEFAULT current_timestamp ,
   gmt_modify DATETIME NOT NULL DEFAULT current_timestamp
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
@@ -52,11 +54,11 @@ CREATE TABLE xhb_user_img(
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,        #图片id
   sid VARCHAR(50) NOT NULL UNIQUE,          #sid
   reg_id INT UNSIGNED,                               #用户注册id
-  name VARCHAR(30) NOT NULL ,               #图片名称
+  name VARCHAR(200) NOT NULL ,               #图片名称
   size int not null ,                       #图片大小
   type VARCHAR(10) NOT NULL ,               #图片格式
   add_date TIMESTAMP NOT NULL ,             #图片上传时间
-  url varchar(255) NOT NULL UNIQUE,         #图片地址
+  url varchar(300) NOT NULL UNIQUE,         #图片地址
   mgt_create DATETIME NOT NULL DEFAULT current_timestamp ,
   mgt_modift DATETIME NOT NULL DEFAULT current_timestamp ,
   CONSTRAINT fk_xui_reg FOREIGN KEY (reg_id) REFERENCES xhb_register(id)
@@ -66,12 +68,12 @@ CREATE TABLE xhb_user_img(
 CREATE TABLE xhb_xys_img(
   id INT UNSIGNED  PRIMARY KEY AUTO_INCREMENT,       #图片id
   sid VARCHAR(50) NOT NULL UNIQUE,          #sid
-  name VARCHAR(30) NOT NULL ,               #图片名称
+  name VARCHAR(200) NOT NULL ,               #图片名称
   size INT NOT NULL ,                       #图片大小
   type VARCHAR(10) NOT NULL ,               #图片类型
   func_desc varchar(255),                   #功能描述
   add_date TIMESTAMP NOT NULL,              #图片上传时间
-  url varchar(100) NOT NULL UNIQUE,         #图片地址
+  url varchar(300) NOT NULL UNIQUE,         #图片地址
   mgt_create DATETIME NOT NULL DEFAULT current_timestamp ,
   mgt_modify DATETIME NOT NULL DEFAULT current_timestamp
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
@@ -174,26 +176,17 @@ CREATE TABLE xhb_user_article_pub(
 
 /*用户动态*/
 CREATE TABLE xhb_user_dynamic(
-  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,   #动态id
-  sid VARCHAR(50) NOT NULL UNIQUE,          #sid
-  content VARCHAR(255),                #动态内容
-  pub_date TIMESTAMP NOT NULL ,        #动态发布时间
-  reg_id INT UNSIGNED,                          #用户id
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,  #动态id
+  sid VARCHAR(50) NOT NULL UNIQUE,             #sid
+  content VARCHAR(255),                        #动态内容
+  pub_date TIMESTAMP NOT NULL ,                #动态发布时间
+  imgs VARCHAR(200) ,                          #动态图片集合用;分隔
+  reg_id INT UNSIGNED,                         #用户id
   mgt_create DATETIME NOT NULL DEFAULT current_timestamp ,
   mgt_modify DATETIME NOT NULL DEFAULT current_timestamp,
   CONSTRAINT fk_xud_reg FOREIGN KEY (reg_id) REFERENCES xhb_register(id)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-CREATE TABLE xhb_user_dyn_imgs(
-  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,    #动态附加图片
-  dyn_id INT UNSIGNED,                           #动态id
-  img_id INT UNSIGNED,                           #图片id
-  mgt_create DATETIME NOT NULL DEFAULT current_timestamp ,
-  mgt_modify DATETIME NOT NULL DEFAULT current_timestamp,
-  KEY (dyn_id,img_id),
-  CONSTRAINT fk_xudi_dyn FOREIGN KEY (dyn_id) REFERENCES xhb_user_dynamic(id),
-  CONSTRAINT fk_xudi_img FOREIGN KEY (img_id) REFERENCES xhb_user_img(id)
-)ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 /*可见性*/
 CREATE TABLE xhb_user_visibility(
@@ -219,12 +212,13 @@ CREATE TABLE xhb_user_dyn_vis(
 )ENGINE=INNODB DEFAULT  CHARSET=utf8;
 
 
-/*动态点赞*/
-CREATE TABLE xhb_user_dyn_like(
-  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,    #点赞id
-  sid VARCHAR(50) NOT NULL UNIQUE,          #sid
+/*动态转发*/
+CREATE TABLE xhb_user_dyn_share(
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,    #转发d
+  sid VARCHAR(50) NOT NULL UNIQUE,               #sid
   dyn_id INT UNSIGNED,                           #动态id
   reg_id INT UNSIGNED,                           #用户id
+  content VARCHAR(255),                          #转发内容
   date TIMESTAMP,                       #点赞时间
   mgt_create DATETIME NOT NULL DEFAULT current_timestamp ,
   mgt_modify DATETIME NOT NULL DEFAULT current_timestamp,
@@ -237,10 +231,10 @@ CREATE TABLE xhb_user_dyn_like(
 /*踩动态*/
 CREATE TABLE xhb_user_dyn_stamp(
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,  #踩动态id
-  sid VARCHAR(50) NOT NULL UNIQUE,          #sid
+  sid VARCHAR(50) NOT NULL UNIQUE,             #sid
   dyn_id INT UNSIGNED,                         #动态id
   reg_id INT UNSIGNED,                         #用户id
-  date TIMESTAMP,                     #踩时间
+  date TIMESTAMP,                              #踩时间
   mgt_create DATETIME NOT NULL DEFAULT current_timestamp ,
   mgt_modify DATETIME NOT NULL DEFAULT current_timestamp,
   KEY (dyn_id,reg_id),
@@ -251,9 +245,9 @@ CREATE TABLE xhb_user_dyn_stamp(
 /*动态评论*/
 CREATE TABLE xhb_user_dyn_comment(
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,  #评论id
-  sid VARCHAR(50) NOT NULL UNIQUE,          #sid
-  content VARCHAR(50),                #评论内容
-  date TIMESTAMP NOT NULL ,           #评论时间
+  sid VARCHAR(50) NOT NULL UNIQUE,             #sid
+  content VARCHAR(50),                         #评论内容
+  date TIMESTAMP NOT NULL ,                    #评论时间
   reg_id INT UNSIGNED,                         #评论人id
   dyn_id INT UNSIGNED,                         #评论动态id
   mgt_create DATETIME NOT NULL DEFAULT current_timestamp ,
@@ -266,11 +260,11 @@ CREATE TABLE xhb_user_dyn_comment(
 /*动态评论回复表*/
 CREATE TABLE xhb_user_dyn_comm_reply(
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,      #评论回复id
-  sid VARCHAR(50) NOT NULL UNIQUE,          #sid
-  reply_type int NOT NULL ,               #回复类型
-  content VARCHAR(50),                    #如果为1 则reply_id=comm_id,为2则为回复的回复
-  date TIMESTAMP NOT NULL ,               #评论时间
-  reply_id INT  not null ,                #父回复id
+  sid VARCHAR(50) NOT NULL UNIQUE,                 #sid
+  reply_type int NOT NULL ,                        #回复类型 如果为1 则reply_id=comm_id,为2则为回复的回复
+  content VARCHAR(50),                             #回复内容
+  date TIMESTAMP NOT NULL ,                        #评论时间
+  reply_id INT  not null ,                         #父回复id
   comm_id INT UNSIGNED,                            #根评论id
   from_id INT UNSIGNED,                            #回复者id
   to_id INT UNSIGNED,                              #回复目标id

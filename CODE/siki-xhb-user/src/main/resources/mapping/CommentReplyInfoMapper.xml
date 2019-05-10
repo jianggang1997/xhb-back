@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siki.xhb.user.dao.CommentReplyDao">
+
+    <sql id="table_base_columns">
+        xudcr.id,xudcr.sid,xudcr.reply_type,xudcr.content,xudcr.date,xudcr.reply_id,xudcr.comm_id,xudcr.from_id,xudcr.to_id,xudcr.gmt_create,xudcr.gmt_modify
+    </sql>
+
+    <insert id="insertCommentReply">
+      INSERT INTO xhb_user_dyn_comm_reply(sid,reply_type,content,date,reply_id,comm_id,from_id,to_id)
+      VALUES (#{commentReplyInfo.sid,jdbcType.VARCHAR},#{commentReplyInfo.reply_type,jdbcType.INTEGER},#{commentReplyInfo.content,jdbcType.VARCHAR},now(),
+      #{commentReplyInfo.reply_id,jdbcType.INTEGER},#{commentReplyInfo.comm_id,jdbcType.INTEGER},#{commentReplyInfo.from_id,jdbcType.INTEGER},
+      #{commentReplyInfo.to_id,jdbcType.INTEGER})
+    </insert>
+
+</mapper>

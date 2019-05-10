@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siki.xhb.user.dao.UserImgsDao">
+
+    <sql id="table_base_columns">
+        xui.id,xui.sid,xui.reg_id,xui.name,xui.size,xui.type,
+        xui.add_date,xui.url,xui.gmt_create,xui.gmt_modify
+    </sql>
+
+
+    <insert id="insertUserImg">
+      INSERT INTO xhb_user_img(sid,reg_id,name,size,type,add_date,url) VALUES
+          (#{userImgInfo.sid,jdbcType=VARCHAR},#{userImgInfo.reg_id,jdbcType=INTEGER},
+          #{userImgInfo.name,jdbcType=VARCHAR},#{userImgInfo.size,jdbcType=INTEGER},
+          #{userImgInfo.type,jdbcType=INTEGER},now(),#{userImgInfo.url,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="selectUserImgs" resultType="com.siki.xhb.user.model.UserImgInfo">
+        SELECT
+        <include refid="table_base_columns"/>
+        FROM xhb_user_img xui
+        <where>
+            <if test="userImgInfo.reg_id!=null">
+                AND xui.reg_id = #{info.reg_id}
+            </if>
+        </where>
+        ORDER BY xui.gmt_create DESC LIMIT #{start},#{pageSize}
+    </select>
+
+
+    <select id="selectImgIdBySids" resultType="java.lang.Integer">
+        SELECT
+          xui.id
+        FROM xhb_user_img xui
+        <where>
+              xui.sid IN
+            <foreach item="item" index="index" collection="sids" open="(" separator="," close=")">
+              #{item}
+            </foreach>
+        </where>
+    </select>
+
+
+</mapper>
