@@ -1,0 +1,15 @@
+server:
+  port: 40012
+
+
+spring:
+  application:
+    name: siki-xhb-hello
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://192.168.37.135:40001/eureka/,http://192.168.37.136:40001/eureka/
