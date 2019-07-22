@@ -1,13 +1,3 @@
-server:
-  port: 30002
-management:
-  server:
-    port: 39002
-
-spring:
-  application:
-    name: siki-xhb-admin
-
 eureka:
   instance:
     prefer-ip-address: true
@@ -20,6 +10,12 @@ eureka:
     service-url:
       defaultZone: http://61.183.20.49:30001/eureka/
 
-info:
-  name: siki-xhb-admin
-  version: '@project.version@'
+
+oss:
+  accessId: LTAIe02SysY7ovPx
+  accessKey: IVP5QRka1F3LrH8FIGik0aMTgp0GfJ
+  endpoint: oss-cn-qingdao.aliyuncs.com
+  bucket: smsboard-img
+  host: http://${oss.bucket}.${oss.endpoint}
+  callbackUrl: http://61.183.20.49:30003/api/aliyun/v1/ossCallback.do
+  dir: smsboard_      

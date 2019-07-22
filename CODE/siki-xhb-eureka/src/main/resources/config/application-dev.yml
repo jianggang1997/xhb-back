@@ -6,23 +6,29 @@ management:
 
 spring:
   application:
-    name: '@artifactId@'
+    name: siki-xhb-eureka
   banner:
     location: classpath:config/banner.txt
 
 eureka:
   instance:
-    hostname: localhost
-    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/health
+    metadata-map:
+      management:
+        port: ${management.server.port}
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://localhost:30001/eureka/
+      defaultZone: http://http://61.183.20.49:30001/eureka/
 
 
 info:
-  name: '@artifactId@'
+  name: siki-xhb-eureka
+  version: '@project.version@'
+
 
 
 

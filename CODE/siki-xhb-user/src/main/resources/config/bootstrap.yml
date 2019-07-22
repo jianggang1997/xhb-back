@@ -2,7 +2,7 @@ server:
   port: 30011
 management:
   server:
-    port: 38011
+    port: 39011
   endpoints:
     web:
       exposure:
@@ -24,7 +24,7 @@ spring:
     config:
       discovery:
         enabled: false
-      uri: http://192.168.37.131:30000
+      uri: http://61.183.20.49:30004
       name: ${spring.application.name}
       profile: ${spring.profiles.active}
 

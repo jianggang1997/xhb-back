@@ -1,0 +1,61 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/health
+    metadata-map:
+      management:
+        port: ${management.server.port}
+  client:
+    service-url:
+      defaultZone: http://61.183.20.49:30001/eureka/
+
+spring:
+  mvc:
+    favicon:
+      enabled: false
+  redis:
+    host: 61.183.20.49
+    port: 6379
+    database: 0
+    jedis:
+      pool:
+        max-wait: 1000
+        max-active: 8
+        max-idle: 50
+        min-idle: 0
+    timeout: 5000
+
+
+zuul:
+  ignoredServices : '*'
+  ignored-patterns : '/**/inner/**'
+  addHostHeader : true
+  routes:
+    msg:
+      path : /api/msg/v1/**
+      serviceId : siki-xhb-msg
+      sensitiveHeaders : user-agent,cookie
+    user:
+      path : /api/user/v1/**
+      serviceId : siki-xhb-user
+      sensitiveHeaders : user-agent,cookie
+    aliyun:
+      path: /api/aliyun/v1/**
+      serviceId: siki-xhb-aliyun
+      sensitiveHeaders : user-agent,cookie    
+siki-xhb-msg:
+  ribbon:
+    ConnectTimeout : 250
+    OkToRetryOnAllOperations : false
+    ReadTimeout : 200000
+
+gateway:
+  config:
+    validateCode: register.do;modifyPass.do
+    noValidateLogin: register.do;login.do;sendMailValidCode.do;modifyPass.do;isExistAccout.do;getOssSignature.do;ossCallback.do
+    logout: login.do
+    validCodeLiveTime: 180
+    validMinInterval: 60
+    loginUri: login.do
+    sendValidCodeUri: sendMailValidCode.do;

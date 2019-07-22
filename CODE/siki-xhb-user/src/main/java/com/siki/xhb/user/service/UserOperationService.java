@@ -1,8 +1,6 @@
 package com.siki.xhb.user.service;
 
-import com.siki.xhb.userI.vo.ModifyPassReq;
-import com.siki.xhb.userI.vo.UserLoginReq;
-import com.siki.xhb.userI.vo.UserRaegisterReq;
+import com.siki.xhb.userI.vo.*;
 
 public interface UserOperationService {
 
@@ -26,4 +24,51 @@ public interface UserOperationService {
      * @return
      */
     boolean userMidifyPass(ModifyPassReq modifyPassReq);
+
+    /**
+     * 检查账户是否存在
+     * @param accout
+     * @return
+     */
+    boolean checkisExistAccout(String accout);
+
+    /**
+     * 发布动态
+     * @param publishDynamicReq
+     * @param userId
+     * @return
+     */
+    boolean publishDynamic(PublishDynamicReq publishDynamicReq,String userId);
+
+    /**
+     * 踩动态
+     * @param stampDynamicReq
+     * @param userId
+     * @return
+     */
+    boolean stampDynamic(StampDynamicReq stampDynamicReq,String userId);
+
+    /**
+     * 分享动态
+     * @param shareDynamicReq
+     * @param userId
+     * @return
+     */
+    boolean shareDynamic(ShareDynamicReq shareDynamicReq,String userId);
+
+    /**
+     * 评论动态
+     * @param commentDynamicReq
+     * @param userId
+     * @return
+     */
+    boolean CommentDynamic(CommentDynamicReq commentDynamicReq,String userId);
+
+    /**
+     * 回复动态评论
+     * @param replyCommentReq
+     * @param userId
+     * @return
+     */
+    boolean ReplyDynamicComment(ReplyCommentReq replyCommentReq,String userId);
 }

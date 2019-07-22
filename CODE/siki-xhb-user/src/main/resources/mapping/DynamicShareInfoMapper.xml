@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siki.xhb.user.dao.DynamicShareInfoDao">
+
+    <sql id="table_base_columns">
+        xuds.id,xuds.sid,xuds.dyn_id,xuds.reg_id,xuds.content,xuds.date,xuds.gmt_create,xuds.gmt_modify
+    </sql>
+
+
+    <insert id="insertShareInfo">
+      INSERT INTO xhb_user_dyn_share(sid,dyn_id,reg_id,content,date) VALUES
+      (#{dynamicShareInfo.sid,jdbcType.VARCHAR},{dynamicShareInfo.dyn_id,jdbcType.INTEGER},
+      {dynamicShareInfo.reg_id,jdbcType.INTEGER},{dynamicShareInfo.content,jdbcType.VARCHAR},now())
+    </insert>
+
+
+    <select id="countShareByDyId" resultType="java.lang.Integer">
+      SELECT COUNT(xuds.id) FROM xhb_user_dyn_share xuds
+        WHERE xuds.dyn_id=#{dynamicId}
+    </select>
+
+
+</mapper>

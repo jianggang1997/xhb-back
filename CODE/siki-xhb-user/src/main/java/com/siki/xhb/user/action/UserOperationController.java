@@ -4,16 +4,15 @@ package com.siki.xhb.user.action;
 import com.google.common.base.Preconditions;
 import com.siki.xhb.user.service.UserOperationService;
 import com.siki.xhb.userI.action.UserOperationI;
-import com.siki.xhb.userI.vo.ModifyPassReq;
-import com.siki.xhb.userI.vo.UserLoginReq;
-import com.siki.xhb.userI.vo.UserRaegisterReq;
+import com.siki.xhb.userI.vo.*;
 import com.siki.xhb.vo.constant.DesKey;
 import com.siki.xhb.vo.constant.RsqCode;
 import com.siki.xhb.vo.model.ResObject;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -99,5 +98,68 @@ public class UserOperationController implements UserOperationI {
         res.setCode(RsqCode.RESPONSE_FAIL);
         res.setMessage("修改失败！");
         return res;
+    }
+
+    @Override
+    public ResObject isExistUser(String accout) {
+        log.info("----------------->检验用户名是否存在：{}",accout);
+        ResObject res = new ResObject();
+        Preconditions.checkArgument(!StringUtils.isBlank(accout),"账号不能为空");
+        boolean isExist = userOperationService.checkisExistAccout(accout);
+        if(isExist){
+            res.setCode(RsqCode.RESPONSE_SUCCESS);
+            res.setMessage("账号存在");
+            return res;
+        }
+        res.setCode(RsqCode.USER_NOT_EXIST);
+        res.setMessage("账号不存在");
+        return res;
+    }
+
+    @Override
+    public ResObject publishDynamic(@RequestBody PublishDynamicReq publishDynamicReq,
+                                    @RequestHeader(value = "userId") String userId) {
+        Preconditions.checkNotNull(publishDynamicReq,"请求对象不能为空");
+        Preconditions.checkArgument(!StringUtils.isBlank(userId),"用户id不能为空");
+        Preconditions.checkArgument(publishDynamicReq.getContent().length()<200,"动态内容长度不能大于200");
+        Preconditions.checkArgument(publishDynamicReq.getDynamicImgs().size()<=9,"动态图片不能超过9张");
+        log.info("-------------->发布动态：{}",publishDynamicReq.toString());
+        ResObject resObject = new ResObject();
+        boolean res = userOperationService.publishDynamic(publishDynamicReq, userId);
+        if(res){
+            resObject.setCode(RsqCode.RESPONSE_SUCCESS);
+            resObject.setMessage("发布成功！");
+            return resObject;
+        }
+        resObject.setCode(RsqCode.RESPONSE_FAIL);
+        resObject.setMessage("发布失败！");
+        return resObject;
+    }
+
+    @Override
+    public ResObject queryDynamic(QueryDynamicReq queryDynamicReq, String userId) {
+        Preconditions.checkNotNull(queryDynamicReq,"查询参数不能为空");
+        Preconditions.checkNotNull(userId,"用户sid不能为空");
+        return null;
+    }
+
+    @Override
+    public ResObject stampDynamic(StampDynamicReq stampDynamicReq, String userId) {
+        return null;
+    }
+
+    @Override
+    public ResObject shareDynamic(ShareDynamicReq shareDynamicReq, String userId) {
+        return null;
+    }
+
+    @Override
+    public ResObject commentDynamic(CommentDynamicReq commentDynamicReq, String userId) {
+        return null;
+    }
+
+    @Override
+    public ResObject replyComment(ReplyCommentReq replyCommentReq, String userId) {
+        return null;
     }
 }

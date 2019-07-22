@@ -1,8 +1,8 @@
 server:
-  port: 30003
+  port: 30013
 management:
   server:
-    port: 39003
+    port: 39013
   endpoints:
     web:
       exposure:
@@ -12,9 +12,10 @@ management:
     health:
       show-details: ALWAYS
 
+
 spring:
   application:
-    name: siki-xhb-gateway
+    name: siki-xhb-aliyun
   banner:
     location: classpath:config/banner.txt
   profiles:
@@ -27,8 +28,7 @@ spring:
       name: ${spring.application.name}
       profile: ${spring.profiles.active}
 
+
 info:
-  name: siki-xhb-gateway
+  name: siki-xhb-aliyun
   version: 1.0.0
-
-
