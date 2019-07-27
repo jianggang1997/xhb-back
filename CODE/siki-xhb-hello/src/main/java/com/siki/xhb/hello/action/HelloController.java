@@ -1,6 +1,5 @@
 package com.siki.xhb.hello.action;
 
-import com.netflix.client.http.HttpResponse;
 import com.siki.xhb.hello.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

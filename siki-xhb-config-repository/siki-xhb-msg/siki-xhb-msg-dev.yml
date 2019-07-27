@@ -8,7 +8,7 @@ eureka:
         port: ${management.server.port}
   client:
     service-url:
-      defaultZone: http://61.183.20.49:30001/eureka/
+      defaultZone: http://192.168.37.135:40001/eureka/,http://192.168.37.136:40001/eureka/
 
 spring:
   mail:

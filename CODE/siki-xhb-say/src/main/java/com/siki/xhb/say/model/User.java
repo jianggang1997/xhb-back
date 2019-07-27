@@ -1,6 +1,5 @@
 package com.siki.xhb.say.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**

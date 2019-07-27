@@ -1,5 +1,6 @@
 package com.siki.xhb.say.service.impl;
 
+import com.siki.xhb.helloi.action.HelloActionI;
 import com.siki.xhb.say.model.User;
 import com.siki.xhb.say.service.SayService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,13 +25,17 @@ public class SayServiceImpl implements SayService {
     RestTemplate restTemplate;
 
 
+    @Autowired
+    HelloActionI helloActionI;
+
     @Override
     public String getUser() {
         ResponseEntity<String> response  =  restTemplate.getForEntity("http://siki-xhb-hello/getUser.do",String.class);
         if(response.getStatusCode().equals(HttpStatus.OK)){
             return response.getBody();
         }
-        return null;
+
+        return helloActionI.getHello();
     }
 
     @Override

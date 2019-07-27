@@ -1,5 +1,5 @@
 server:
-  port: 40012
+  port: 40020
 
 
 spring:
