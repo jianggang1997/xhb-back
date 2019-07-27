@@ -12,4 +12,4 @@ eureka:
 
 test:
  config:
-  name: this is name
+  name: this is modify name
