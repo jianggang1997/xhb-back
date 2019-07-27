@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix = "test.config")
-@RefreshScope
 public class BusProperties {
 
     private String name;
