@@ -1,7 +1,6 @@
 package com.siki.xhb.bus.action;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2019/7/28 01:13:47
  * @description
  */
-@RefreshScope
 @RestController
 public class BusDemoController {
 
