@@ -10,6 +10,6 @@ eureka:
     service-url:
       defaultZone: http://192.168.37.135:40001/eureka/,http://192.168.37.136:40001/eureka/
 
- test:
-  config:
-    name: this is name
+test:
+ config:
+  name: this is name
