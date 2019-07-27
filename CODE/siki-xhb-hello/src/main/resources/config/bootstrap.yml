@@ -1,6 +1,17 @@
 server:
   port: 40020
 
+management:
+  server:
+    port: 49020
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
 
 spring:
   application:
@@ -10,10 +21,13 @@ spring:
   cloud:
     config:
       discovery:
-        enable: false
+        enabled: false
       uri: http://192.168.1.2:30003
       name: ${spring.application.name}
       profile: ${spring.profiles.active}
     bus:
       refresh:
         enabled: true
+  kafka:
+    bootstrap-servers: 192.168.37.135:9092
+

@@ -1,0 +1,36 @@
+server:
+  port: 40021
+
+management:
+  server:
+    port: 49021
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+
+spring:
+  application:
+    name: siki-xhb-bus
+  profiles:
+    active: dev
+  cloud:
+    config:
+      discovery:
+        enabled: false
+      uri: http://192.168.1.2:30003
+      name: ${spring.application.name}
+      profile: ${spring.profiles.active}
+    bus:
+      refresh:
+        enabled: true
+  kafka:
+    bootstrap-servers: 192.168.37.135:9092
+
+info:
+  name: siki-xhb-bus
+  version: 1.0.0

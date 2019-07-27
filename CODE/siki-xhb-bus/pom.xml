@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>siki-xhb-hello</artifactId>
-    <version>1.0.0</version>
-
     <parent>
         <groupId>com.siki.xhb</groupId>
         <artifactId>siki-xhb-parent</artifactId>
         <version>1.0.0</version>
     </parent>
+
+    <artifactId>siki-xhb-bus</artifactId>
+    <version>1.0.0</version>
 
     <dependencies>
         <dependency>
@@ -21,11 +21,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.siki.xhb</groupId>
-            <artifactId>siki-xhb-hello-interface</artifactId>
-            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -45,13 +40,5 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
