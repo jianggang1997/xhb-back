@@ -8,8 +8,11 @@
 
     <insert id="insertComment">
       INSERT INTO xhb_user_dyn_comment(sid,content,date,reg_id,dyn_id)
-      VALUES (#{dynamicCommentInfo.sid,jdbcType=VARCHAR},#{dynamicCommentInfo.content,jdbcType=VARCHAR},
-      now(),#{dynamicCommentInfo.reg_id,jdbcType=INTEGER},#{dynamicCommentInfo.dyn_id,jdbcType=INTEGER})
+      VALUES (#{dynamicCommentInfo.sid,jdbcType=VARCHAR},
+              #{dynamicCommentInfo.content,jdbcType=VARCHAR},
+              now(),
+              #{dynamicCommentInfo.reg_id,jdbcType=INTEGER},
+              #{dynamicCommentInfo.dyn_id,jdbcType=INTEGER})
     </insert>
 
     <select id="countCommentByDyId" resultType="java.lang.Integer">

@@ -1,6 +1,5 @@
 package com.siki.xhb.user.dao;
 
-import com.siki.xhb.user.model.CommentReplyInfo;
 import com.siki.xhb.user.model.DynamicCommentInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

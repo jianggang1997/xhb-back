@@ -20,5 +20,10 @@ public interface DynamicShareInfoDao {
      */
     int insertShareInfo(@Param(value = "dynamicShareInfo")DynamicShareInfo dynamicShareInfo);
 
+    /**
+     * 动态分享次数查询
+     * @param dynamicId
+     * @return
+     */
     int countShareByDyId(@Param(value = "dynamicId")Integer dynamicId);
 }

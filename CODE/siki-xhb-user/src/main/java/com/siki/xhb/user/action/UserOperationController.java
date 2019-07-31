@@ -140,7 +140,10 @@ public class UserOperationController implements UserOperationI {
     public ResObject queryDynamic(QueryDynamicReq queryDynamicReq, String userId) {
         Preconditions.checkNotNull(queryDynamicReq,"查询参数不能为空");
         Preconditions.checkNotNull(userId,"用户sid不能为空");
-        return null;
+        log.info("---------------->查询校园动态列表:userId:{},queryDynamicReq:{}",userId,queryDynamicReq);
+        ResObject res = new ResObject();
+
+        return res;
     }
 
     @Override

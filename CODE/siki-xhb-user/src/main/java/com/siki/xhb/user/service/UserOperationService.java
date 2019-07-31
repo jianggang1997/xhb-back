@@ -2,6 +2,8 @@ package com.siki.xhb.user.service;
 
 import com.siki.xhb.userI.vo.*;
 
+import java.util.List;
+
 public interface UserOperationService {
 
     /**
@@ -71,4 +73,13 @@ public interface UserOperationService {
      * @return
      */
     boolean ReplyDynamicComment(ReplyCommentReq replyCommentReq,String userId);
+
+
+    /**
+     * 查询操场模块校园动态列表
+     * @param queryDynamicReq
+     * @param userId
+     * @return
+     */
+    List<PlaygroundUserDynRes> queryPlaygroundDynList(QueryDynamicReq queryDynamicReq,String userId);
 }

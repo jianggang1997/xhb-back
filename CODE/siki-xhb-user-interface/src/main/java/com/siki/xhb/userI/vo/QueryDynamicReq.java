@@ -16,4 +16,10 @@ public class QueryDynamicReq {
 
     @ApiModelProperty(value = "查询类型")
     private String type;
+
+    @ApiModelProperty(value = "当前页")
+    private Integer currPage;
+
+    @ApiModelProperty(value = "每页条数")
+    private Integer pageSize;
 }

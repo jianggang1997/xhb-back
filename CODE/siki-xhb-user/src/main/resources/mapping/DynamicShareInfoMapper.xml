@@ -8,9 +8,12 @@
 
 
     <insert id="insertShareInfo">
-      INSERT INTO xhb_user_dyn_share(sid,dyn_id,reg_id,content,date) VALUES
-      (#{dynamicShareInfo.sid,jdbcType.VARCHAR},{dynamicShareInfo.dyn_id,jdbcType.INTEGER},
-      {dynamicShareInfo.reg_id,jdbcType.INTEGER},{dynamicShareInfo.content,jdbcType.VARCHAR},now())
+      INSERT INTO  xhb_user_dyn_share(sid,dyn_id,reg_id,content,date) VALUES
+      (#{dynamicShareInfo.sid,jdbcType=VARCHAR},
+      #{dynamicShareInfo.dyn_id,jdbcType=INTEGER},
+      #{dynamicShareInfo.reg_id,jdbcType=INTEGER},
+      #{dynamicShareInfo.content,jdbcType=VARCHAR},
+      now())
     </insert>
 
 

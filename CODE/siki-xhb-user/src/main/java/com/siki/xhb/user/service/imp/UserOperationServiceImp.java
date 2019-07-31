@@ -189,4 +189,12 @@ public class UserOperationServiceImp implements UserOperationService {
 
         return false;
     }
+
+    @Override
+    public List<PlaygroundUserDynRes> queryPlaygroundDynList(QueryDynamicReq queryDynamicReq, String userId) {
+        List<PlaygroundUserDynRes> res = new ArrayList<>();
+        UserDynamicInfo userDynamicInfo = new UserDynamicInfo();
+//        userDynamicDao.selectUserDynamic();
+        return null;
+    }
 }

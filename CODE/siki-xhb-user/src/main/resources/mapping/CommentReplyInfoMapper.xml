@@ -7,10 +7,15 @@
     </sql>
 
     <insert id="insertCommentReply">
-      INSERT INTO xhb_user_dyn_comm_reply(sid,reply_type,content,date,reply_id,comm_id,from_id,to_id)
-      VALUES (#{commentReplyInfo.sid,jdbcType.VARCHAR},#{commentReplyInfo.reply_type,jdbcType.INTEGER},#{commentReplyInfo.content,jdbcType.VARCHAR},now(),
-      #{commentReplyInfo.reply_id,jdbcType.INTEGER},#{commentReplyInfo.comm_id,jdbcType.INTEGER},#{commentReplyInfo.from_id,jdbcType.INTEGER},
-      #{commentReplyInfo.to_id,jdbcType.INTEGER})
+      INSERT INTO xhb_user_dyn_comm_reply(sid,reply_type,content,date,reply_id,comm_id,from_id,to_id) VALUES
+      (#{commentReplyInfo.sid,jdbcType=VARCHAR},
+      #{commentReplyInfo.reply_type,jdbcType=INTEGER},
+      #{commentReplyInfo.content,jdbcType=VARCHAR},
+      now(),
+      #{commentReplyInfo.reply_id,jdbcType=INTEGER},
+      #{commentReplyInfo.comm_id,jdbcType=INTEGER},
+      #{commentReplyInfo.from_id,jdbcType=INTEGER},
+      #{commentReplyInfo.to_id,jdbcType=INTEGER})
     </insert>
 
 </mapper>
