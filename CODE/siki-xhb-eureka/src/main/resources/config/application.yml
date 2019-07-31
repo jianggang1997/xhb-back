@@ -22,11 +22,11 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://http://61.183.20.49:30001/eureka/
+      defaultZone: http://106.75.10.91:30001/eureka/
 
 
 info:
-  name: siki-xhb-eureka
+  name: '@porject.artifactId@'
   version: '@project.version@'
 
 

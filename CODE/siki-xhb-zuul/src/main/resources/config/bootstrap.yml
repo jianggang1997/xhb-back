@@ -28,7 +28,7 @@ spring:
       profile: ${spring.profiles.active}
 
 info:
-  name: siki-xhb-gateway
+  name: siki-xhb-zuul
   version: 1.0.0
 
 

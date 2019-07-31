@@ -1,0 +1,85 @@
+server:
+  port: 30003
+
+management:
+  server:
+    port: 39003
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    enabled-by-default: true
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+spring:
+  application:
+    name: siki-springcloud-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: before_route_predicate_factory
+        uri: lb://siki-springcloud-user
+        order: 10000
+        predicates:
+         - Before=2019-02-25T17:02:00.789+08:00
+#      - id: after_route_predicate_factory
+#        uri: lb://siki-springcloud-user
+#        order: 10000
+#        predicates:
+#         - After=2019-02-25T17:04:00.789+08:00
+      - id: between_route_predicate_factory
+        uri: lb://siki-springcloud-hello
+        order: 10000
+        predicates:
+         - Between=2019-02-25T17:02:00.789+08:00, 2019-02-25T17:04:00.789+08:00
+      - id: cookie_route_predicate_factory
+        uri: lb://siki-springcloud-user
+        order: 10001
+        predicates:
+          - Cookie=name, abc
+      - id: header_route_predicate_factory
+        uri: lb://siki-springcloud-user
+        order: 10000
+        predicates:
+         - Header=X-Request-Id, \d+
+      - id: host_route_predicate_factory
+        uri: lb://siki-springcloud-user
+        order: 10000
+        predicates:
+         - Host=**.test.com:9869
+#      - id: method_route_predicate_factory
+#        uri: lb://siki-springcloud-user
+#        order: 10000
+#        predicates:
+#         - Method=GET
+      - id: path_route_predicate_factory
+        uri: lb://siki-springcloud-user
+        order: 10000
+        predicates:
+         - Path=/api/user/v1/**
+        filters:
+         - StripPrefix=3
+      - id: query_route_predicate_factory
+        uri: lb://siki-springcloud-user
+        order: 10000
+        predicates:
+          - Query=name, ab.
+      - id: remoteAddr_route_predicate_factory
+        uri: lb://siki-springcloud-user
+        order: 10000
+        predicates:
+         - RemoteAddr=127.0.0.1/24
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/health
+    metadata-map:
+      management:
+        port: ${management.server.port}
+  client:
+    service-url:
+      defaultZone: http://61.183.20.49:30001/eureka/
