@@ -8,6 +8,6 @@ eureka:
         port: ${management.server.port}
   client:
     service-url:
-      defaultZone: http://192.168.37.135:40001/eureka/,http://192.168.37.136:40001/eureka/
+      defaultZone: http://106.75.10.91:30001/eureka/
 
  

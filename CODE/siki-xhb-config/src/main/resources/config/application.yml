@@ -22,7 +22,7 @@ eureka:
         port: ${management.server.port}
   client:
     service-url:
-      defaultZone: http://61.183.20.49:30001/eureka/
+      defaultZone: http://106.75.10.91:30001/eureka/
 
 spring:
   application:

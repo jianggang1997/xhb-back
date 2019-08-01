@@ -22,12 +22,15 @@ spring:
     config:
       discovery:
         enabled: false
-      uri: http://192.168.1.2:30003
+      uri: http://106.75.10.91:30004
       name: ${spring.application.name}
       profile: ${spring.profiles.active}
-    bus:
-      refresh:
-        enabled: true
-  kafka:
-    bootstrap-servers: 192.168.37.135:9092
+#    bus:
+#      refresh:
+#        enabled: true
+#  kafka:
+#    bootstrap-servers: 192.168.37.135:9092
 
+info:
+  name: '@project.artifactId@'
+  version: '@project.version@'
