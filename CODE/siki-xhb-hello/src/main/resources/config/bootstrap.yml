@@ -13,18 +13,35 @@ management:
       show-details: ALWAYS
 
 
+eureka:
+  instance:
+    preferIpAddress: true
+    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/health
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+    metadata-map:
+      management:
+        port: ${management.server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:30001/eureka
+
 spring:
   application:
     name: siki-xhb-hello
-  profiles:
-    active: dev
-  cloud:
-    config:
-      discovery:
-        enabled: false
-      uri: http://106.75.10.91:30004
-      name: ${spring.application.name}
-      profile: ${spring.profiles.active}
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://localhost:9411/
+#  profiles:
+#    active: dev
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: false
+#      uri: http://106.75.10.91:30004
+#      name: ${spring.application.name}
+#      profile: ${spring.profiles.active}
 #    bus:
 #      refresh:
 #        enabled: true

@@ -1,6 +1,5 @@
 package com.siki.xhb.say.action;
 
-import com.siki.xhb.say.model.User;
 import com.siki.xhb.say.service.SayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

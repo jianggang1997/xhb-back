@@ -4,15 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
-    <artifactId>siki-xhb-say</artifactId>
-    <version>1.0.0</version>
-
     <parent>
         <groupId>com.siki.xhb</groupId>
         <artifactId>siki-xhb-parent</artifactId>
         <version>1.0.0</version>
     </parent>
+
+    <artifactId>siki-xhb-zipkin-server</artifactId>
+    <version>1.0.0</version>
 
     <dependencies>
         <dependency>
@@ -23,24 +22,27 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>-->
-<!--        </dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>io.zipkin.java</groupId>-->
+            <!--<artifactId>zipkin-server</artifactId>-->
+            <!--<version>2.12.9</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>io.zipkin.java</groupId>-->
+            <!--<artifactId>zipkin-autoconfigure-ui</artifactId>-->
+            <!--<version>2.12.9</version>-->
+            <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
         <dependency>
-            <groupId>com.siki.xhb</groupId>
-            <artifactId>siki-xhb-hello-interface</artifactId>
-            <version>1.0.0</version>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-autoconfigure-ui</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-server</artifactId>
         </dependency>
     </dependencies>
+
 
     <build>
         <plugins>

@@ -19,58 +19,90 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: before_route_predicate_factory
-        uri: lb://siki-springcloud-user
-        order: 10000
+      - id: ingredients
+        uri: lb://siki-xhb-hello
         predicates:
-         - Before=2019-02-25T17:02:00.789+08:00
-#      - id: after_route_predicate_factory
-#        uri: lb://siki-springcloud-user
+        - Path=/hello.do
+        filters:
+        - name: Hystrix
+          args:
+            name: fetchIngredients
+            fallbackUri: forward:/user.do
+      - id: ingredients-fallback
+        uri: http://localhost:40011
+        predicates:
+        - Path=/user.do
+#      - id: add_request_parameter_route
+#        uri: lb://siki-xhb-hello
+#        predicates:
+#        - Path=/**
+#        filters:
+#        - AddRequestParameter=foo, bar
+#      - id: hystrix_route
+#        uri: lb://siki-xhb-hello
+#        predicates:
+#        - Path=/hello.do
+#        filters:
+#        - name: Hystrix
+#          args:
+#            name: fallbackcmd
+#            fallbackUri: forward:/getUser.do
+#      - id: add_request_header_route
+#        uri: lb://siki-xhb-hello
+#        filters:
+#        - AddRequestHeader=X-Request-Foo, Bar
+#      - id: remoteAddr_route_predicate_factory
+#        uri: lb://siki-xhb-hello
 #        order: 10000
 #        predicates:
-#         - After=2019-02-25T17:04:00.789+08:00
-      - id: between_route_predicate_factory
-        uri: lb://siki-springcloud-hello
-        order: 10000
-        predicates:
-         - Between=2019-02-25T17:02:00.789+08:00, 2019-02-25T17:04:00.789+08:00
-      - id: cookie_route_predicate_factory
-        uri: lb://siki-springcloud-user
-        order: 10001
-        predicates:
-          - Cookie=name, abc
-      - id: header_route_predicate_factory
-        uri: lb://siki-springcloud-user
-        order: 10000
-        predicates:
-         - Header=X-Request-Id, \d+
-      - id: host_route_predicate_factory
-        uri: lb://siki-springcloud-user
-        order: 10000
-        predicates:
-         - Host=**.test.com:9869
+#         - RemoteAddr=127.0.0.1/24
+#      - id: query_route_predicate_factory
+#        uri: lb://siki-xhb-hello
+#        order: 10000
+#        predicates:
+#          - Query=name, ab.
+#      - id: path_route_predicate_factory
+#        uri: lb://siki-xhb-hello
+#        order: 10000
+#        predicates:
+#         - Path=/api/hello/v1/**
+#        filters:
+#         - StripPrefix=3
 #      - id: method_route_predicate_factory
-#        uri: lb://siki-springcloud-user
+#        uri: lb://siki-xhb-hello
 #        order: 10000
 #        predicates:
 #         - Method=GET
-      - id: path_route_predicate_factory
-        uri: lb://siki-springcloud-user
-        order: 10000
-        predicates:
-         - Path=/api/user/v1/**
-        filters:
-         - StripPrefix=3
-      - id: query_route_predicate_factory
-        uri: lb://siki-springcloud-user
-        order: 10000
-        predicates:
-          - Query=name, ab.
-      - id: remoteAddr_route_predicate_factory
-        uri: lb://siki-springcloud-user
-        order: 10000
-        predicates:
-         - RemoteAddr=127.0.0.1/24
+#      - id: host_route_predicate_factory
+#        uri: lb://siki-xhb-hello
+#        order: 10000
+#        predicates:
+#         - Host=**.test.com:30003
+#       - id: header_route_predicate_factory
+#         uri: lb://siki-xhb-hello
+#         order: 10000
+#         predicates:
+#          - Header=X-Request-Id, \d+
+#      - id: cookie_route_predicate_factory
+#        uri: lb://siki-xhb-hello
+#        order: 10001
+#        predicates:
+#          - Cookie=name, abc
+#      - id: between_route_predicate_factory
+#        uri: lb://siki-xhb-hello
+#        order: 10000
+#        predicates:
+#         - Between=2019-08-16T15:50:00.789+08:00, 2019-08-16T15:56:00.789+08:00
+#      - id: after_route_predicate_factory
+#        uri: lb://siki-xhb-hello
+#        order: 10000
+#        predicates:
+#         - After=2019-08-16T15:50:00.789+08:00
+#      - id: before_route_predicate_factory
+#        uri: lb://siki-xhb-hello
+#        order: 10000
+#        predicates:
+#         - Before=2019-08-16T16:50:00.789+08:00
 
 eureka:
   instance:
@@ -82,4 +114,4 @@ eureka:
         port: ${management.server.port}
   client:
     service-url:
-      defaultZone: http://61.183.20.49:30001/eureka/
+      defaultZone: http://localhost:30001/eureka/

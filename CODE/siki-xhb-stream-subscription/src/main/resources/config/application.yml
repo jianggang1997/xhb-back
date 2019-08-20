@@ -1,0 +1,31 @@
+server:
+  port: 40002
+
+spring:
+  application:
+    name: siki-xhb-stream-subscription
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 106.75.10.91:9092
+          min-partition-count: 1
+          auto-add-partitions: true
+          auto-create-topics: true
+      bindings:
+        siki-stream:
+          group: siki-edu
+          content-type: application/json
+          consumer:
+            concurrency: 1
+            partitioned: false
+
+
+eureka:
+  instance:
+    preferIpAddress: true
+    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/health
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:30001/eureka

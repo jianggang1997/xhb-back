@@ -1,25 +1,17 @@
 server:
-  port: 40011
+  port: 30009
 
 management:
   server:
-    port: 49011
+    port: 39009
   endpoints:
     web:
       exposure:
         include: '*'
+    enabled-by-default: true
   endpoint:
     health:
       show-details: ALWAYS
-
-spring:
-  application:
-    name: siki-xhb-say
-  sleuth:
-    sampler:
-      probability: 1.0
-  zipkin:
-    base-url: http://localhost:9411/
 
 eureka:
   instance:
@@ -32,3 +24,8 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:30001/eureka
+
+spring:
+  application:
+    name: siki-xhb-zipkin-server
+

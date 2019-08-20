@@ -22,7 +22,7 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://106.75.10.91:30001/eureka/
+      defaultZone: http://localhost:30001/eureka/
 
 
 info:
